@@ -1,0 +1,17 @@
+<ng-container>
+  <ul>
+    <li *ngFor="let node of nodes">
+      <input type="checkbox" 
+      [(ngModel)]="node.checked" 
+      (change)="onNodeChange(node.checked, node.children)">
+      {{node.name}}
+      <ng-container *ngIf="node.children && node.children.length>0">
+         <tree-component 
+          [branches]="node.children"
+          [parent] ="node"
+          (onAllNodesSelect)="selectNodeParent($event)">
+         </tree-component>
+      </ng-container>
+    </li>
+  </ul>
+</ng-container>
